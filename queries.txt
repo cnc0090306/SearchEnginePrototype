@@ -1,0 +1,5 @@
+apples
+#AND (apple bananas)
+#OR (apple bananas)
+#NEAR/3 (apple pie)
+#NEAR/5 (pie apple)
