@@ -1,5 +1,6 @@
 /**
- *  Copyright (c) 2016, Carnegie Mellon University.  All Rights Reserved.
+ * Created by xinnacai on 1/31/16.
+ * @author Xinna Cai
  */
 
 import java.io.*;
@@ -50,6 +51,12 @@ public class QrySopOr extends QrySop {
     }
   }
 
+  /**
+   *  getScore for the rankedBoolean retrieval model.
+   *  @param r The retrieval model that determines how scores are calculated.
+   *  @return The document score.
+   *  @throws IOException Error accessing the Lucene index
+   */
   private double getScoreRankedBoolean (RetrievalModel r) throws IOException {
     int max_score = (int) 0.0;
    if(this.docIteratorHasMatch(r)){

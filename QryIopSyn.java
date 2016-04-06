@@ -1,5 +1,6 @@
 /**
- *  Copyright (c) 2016, Carnegie Mellon University.  All Rights Reserved.
+ *  Created by xinnacai on 02/26/16.
+ *  @author Xinna Cai
  */
 import java.io.*;
 import java.util.*;

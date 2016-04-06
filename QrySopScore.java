@@ -1,7 +1,7 @@
 /**
  *  Copyright (c) 2016, Carnegie Mellon University.  All Rights Reserved.
+ *  @author Xinna Cai
  */
-
 import java.io.*;
 import java.lang.IllegalArgumentException;
 
@@ -64,6 +64,12 @@ public class QrySopScore extends QrySop {
     else return 0.0;
   }
 
+  /**
+   * getScore for ranked Boolean model.
+   * @param  r The retrieval model that determines how scores are calculated.
+   * @return The document score.
+   * @throws IOException Error accessing the Lucene index
+   */
   public double getScoreRankedBoolean (RetrievalModel r) throws IOException {
       if (this.args.size()!=1) {
         throw new IllegalArgumentException("Score Operator should have only one argument");
@@ -75,6 +81,12 @@ public class QrySopScore extends QrySop {
         return ((QryIop) q).docIteratorGetMatchPosting().tf;
   }
 
+  /**
+   * getScore for BM25 model.
+   * @param  r The retrieval model that determines how scores are calculated.
+   * @return The document score.
+   * @throws IOException Error accessing the Lucene index
+   */
   public double getScoreBM25(RetrievalModel r) throws IOException {
     if(this.args.size()!=1){
       throw new IllegalArgumentException("Score Operator should have only one argument");
@@ -97,6 +109,12 @@ public class QrySopScore extends QrySop {
 
   }
 
+  /**
+   * getScore for Indri model.
+   * @param  r The retrieval model that determines how scores are calculated.
+   * @return The document score.
+   * @throws IOException Error accessing the Lucene index
+   */
   public double getScoreIndri(RetrievalModel r) throws IOException {
     if(this.args.size()!=1){
       throw new IllegalArgumentException("Score Operator should have only one argument");
@@ -117,6 +135,12 @@ public class QrySopScore extends QrySop {
     return score;
   }
 
+  /**
+   * get default score for Indri model in which document do not have match terms.
+   * @param  r The retrieval model that determines how scores are calculated.
+   * @return The document score.
+   * @throws IOException Error accessing the Lucene index
+   */
   public double getDefaultScore(RetrievalModel r, int docid) throws IOException {
     if(this.args.size()!=1){
       throw new IllegalArgumentException("Score Operator should have only one argument");

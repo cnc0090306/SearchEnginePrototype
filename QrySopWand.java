@@ -3,31 +3,45 @@ import java.util.ArrayList;
 
 /**
  * Created by xinnacai on 3/13/16.
+ * @author Xinna Cai
  */
 public class QrySopWand extends QrySop {
-
+    /** weight vector for different evidence */
     public ArrayList<Double> weightArray = new ArrayList<Double>();
+    /** sum of weight vector */
     public double sumOfWeight;
 
-//    public QrySopWand(ArrayList<Double> weightArray, double sumOfWeight){
-//        this.weightArray.addAll(weightArray);
-//        this.sumOfWeight = sumOfWeight;
-//    }
-
+    /**
+     * set weight vector.
+     * @param weightArray
+     */
     public void setWeightArray(ArrayList<Double> weightArray){
         this.weightArray.addAll(weightArray);
     }
 
+    /**
+     * set sum of weight.
+     * @param sumOfWeight
+     */
     public void setSumOfWeight(double sumOfWeight){
         this.sumOfWeight = sumOfWeight;
     }
 
-
-
+    /**
+     * Indicates whether the query has a match.
+     * @param r The retrieval model that determines what is a match
+     * @return True if the query matches, otherwise false.
+     */
     public boolean docIteratorHasMatch(RetrievalModel r) {
         return this.docIteratorHasMatchMin(r);
     }
 
+    /**
+     * get default score for Indri model.
+     * @param  r The retrieval model that determines how scores are calculated.
+     * @return The document score.
+     * @throws IOException Error accessing the Lucene index
+     */
     public double getDefaultScore(RetrievalModel r, int docid) throws IOException{
         double score = 1.0;
         int size = weightArray.size();
@@ -39,6 +53,12 @@ public class QrySopWand extends QrySop {
         return score;
     }
 
+    /**
+     * getScore for Indri model.
+     * @param  r The retrieval model that determines how scores are calculated.
+     * @return The document score.
+     * @throws IOException Error accessing the Lucene index
+     */
     public double getScore(RetrievalModel r) throws IOException{
         if(!(r instanceof RetrievalModelIndri)){
             throw new IllegalArgumentException("Wand should be applied in Indri");

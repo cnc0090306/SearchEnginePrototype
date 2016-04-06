@@ -1,5 +1,6 @@
 /**
  * Created by xinnacai on 1/31/16.
+ * @author Xinna Cai
  */
 
 import java.io.IOException;
@@ -20,11 +21,8 @@ public class QryIopNear extends QryIop {
 
     /**
      * constructor with distance
-     *
      * @param distance the maximum distance
      */
-
-
     public QryIopNear (int distance) {
         this.distance = distance;    // Default field if none is specified.
     }

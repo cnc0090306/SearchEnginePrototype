@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by xinnacai on 3/13/16.
+ * @author Xinna Cai
  */
 public class QryIopWin extends QryIop{
     private int distance;

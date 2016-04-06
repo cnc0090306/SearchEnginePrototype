@@ -1,5 +1,6 @@
 /**
  * Created by xinnacai on 1/31/16.
+ * @author Xinna Cai
  */
 import java.io.*;
 public class QrySopAnd extends QrySop{
@@ -48,6 +49,12 @@ public class QrySopAnd extends QrySop{
         }
     }
 
+    /**
+     *  getScore for the rankedBoolean retrieval model.
+     *  @param r The retrieval model that determines how scores are calculated.
+     *  @return The document score.
+     *  @throws IOException Error accessing the Lucene index
+     */
      private double getScoreRankedBoolean (RetrievalModel r) throws IOException{
          double min_score = Integer.MAX_VALUE;
          if(!this.docIteratorHasMatch(r)) return 0.0;
@@ -70,6 +77,12 @@ public class QrySopAnd extends QrySop{
 
      }
 
+    /**
+     *  get default score for indri model.
+     *  @param r The retrieval model that determines how scores are calculated.
+     *  @return The document score.
+     *  @throws IOException Error accessing the Lucene index
+     */
     public double getDefaultScore(RetrievalModel r, int docid) throws IOException{
         double score = 1.0;
         if(r instanceof RetrievalModelIndri){
@@ -83,7 +96,12 @@ public class QrySopAnd extends QrySop{
         return score;
     }
 
-
+    /**
+     *  getScore for the indri model.
+     *  @param r The retrieval model that determines how scores are calculated.
+     *  @return The document score.
+     *  @throws IOException Error accessing the Lucene index
+     */
     public double getScoreIndri(RetrievalModel r) throws IOException{
         double score = 1.0;
         double q_size = this.args.size();
