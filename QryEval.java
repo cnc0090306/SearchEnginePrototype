@@ -104,14 +104,19 @@ public class QryEval {
         ANALYZER.setStemmer(EnglishAnalyzerConfigurable.StemmerType.KSTEM);
 
         Idx.initialize(parameters.get("indexPath"));
-        RetrievalModel model = initializeRetrievalModel(parameters);
+        if(parameters.get("retrievalAlgorithm").toLowerCase().equals("letor")){
+            LearnToRank ltr = new LearnToRank(parameters);
+        } else {
+            RetrievalModel model = initializeRetrievalModel(parameters);
 
-        writer = new FileWriter(parameters.get("trecEvalOutputPath"));
+            writer = new FileWriter(parameters.get("trecEvalOutputPath"));
 
-        if (fb && !fbInitialRankingFile.equals("")) {
-            readDocumentRanking(fbInitialRankingFile);
+            if (fb && !fbInitialRankingFile.equals("")) {
+                readDocumentRanking(fbInitialRankingFile);
+            }
+            processQueryFile(parameters.get("queryFilePath"), model);
         }
-        processQueryFile(parameters.get("queryFilePath"), model);
+
 
         //  Clean up.
 
